@@ -18,5 +18,5 @@ const hotdir = new hf(directory)
 await hotdir.rename('newfilename', 'ext')
 
 const hotfile = new hf(file)
-await hotfile.movieTo(hotdir)
+await hotfile.moveTo(hotdir)
 ```
