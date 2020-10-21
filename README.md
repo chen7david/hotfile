@@ -13,11 +13,10 @@ const someAsyncFunction = async () => {
 }
 ```
 
-
 ```js
-    const hotdir = new hf(directory)
-    await hotdir.rename('newfilename', 'ext')
+const hotdir = new hf(directory)
+await hotdir.rename('newfilename', 'ext')
 
-    const hotfile = new hf(file)
-    await hotfile.movieTo(hotdir)
+const hotfile = new hf(file)
+await hotfile.movieTo(hotdir)
 ```
