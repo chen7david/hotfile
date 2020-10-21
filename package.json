@@ -1,0 +1,20 @@
+{
+  "name": "hotfile",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chen7david/hotfile.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chen7david/hotfile/issues"
+  },
+  "homepage": "https://github.com/chen7david/hotfile#readme"
+}
