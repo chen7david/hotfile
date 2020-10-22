@@ -24,7 +24,7 @@ class Hotfile {
 
     static async mkdir(path){
         return fs.promises.mkdir(path, { recursive: true })
-            .then(() => true).catch(() => false)
+            .then(() => new Hotfile(path)).catch(() => false)
     }
 
     static async readdir(path){
@@ -50,17 +50,20 @@ class Hotfile {
     async moveTo(toPath){
         if(toPath instanceof Hotfile && toPath.isDirectory) toPath = toPath.path
         toPath = toPath + '/' + this.filename()
-        return fs.promises.rename(this.path, toPath).then(() => {
-                Object.assign(this, new Hotfile(toPath))
+        return fs.promises.rename(this.path, toPath).then(async () => {
+                await Object.assign(this, new Hotfile(toPath))
                 return true
         }).catch(() => false)
     }
 
     async move(toPath){
-        return fs.promises.rename(this.path, toPath).then(() => {
-                Object.assign(this, new FileManager(toPath))
+        return fs.promises.rename(this.path, toPath).then(async () => {
+                await Object.assign(this, new Hotfile(toPath))
                 return true
-        }).catch(() => false)
+        }).catch((err) => {
+            console.log(err)
+            return false
+        })
     }
 
     async appendDirectory(name){
@@ -75,8 +78,8 @@ class Hotfile {
     }
 
     async delete(){
-        return fs.promises.unlink(this.path).then(() => {
-            Object.assign(this,{parent: null, path: null, name: null, metadata: null})
+        return fs.promises.unlink(this.path).then(async () => {
+            await Object.assign(this,{parent: null, path: null, name: null, metadata: null})
             return true
         }).catch(() => false)
     }
