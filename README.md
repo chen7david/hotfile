@@ -60,18 +60,13 @@ class SomeName extends HF {
             this.ext && this.ext.replace('.','') || null
         ].filter(e => e != null).join('.')
     }
-
+    
+    /* rewriting map function with default settings */
     static async map(path, options = {}){
-       const items = await this.readdir(path, options)
-       for(let i = 0; i < items.length; i++){
-           if(items[i].isDirectory) items[i].children = await this.map(items[i].path, options)
-       }
-       return items
-    }
-
-    static async mkdir(path){
-        return fs.promises.mkdir(path, { recursive: true })
-            .then(() => new Hotfile(path)).catch(() => false)
+        return await super.map(path, {
+            exclude: /(^|\/)\.[^\/\.]/g,
+            model: this
+        })
     }
 
     async rename(name, ext){
