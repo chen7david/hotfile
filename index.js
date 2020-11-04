@@ -29,6 +29,16 @@ class Hotfile {
         if(exclude) items = items.filter(item => !(exclude).test(item))
         return items.map(i => model ? new model(p.resolve(path,i)) : new Hotfile(p.resolve(path,i)))
     }
+
+    static async exists(file) {
+        return fs.promises.access(file, fs.constants.F_OK)
+            .then(() => true).catch(() => false)
+    }
+
+    async exists(file) {
+        return fs.promises.access(file, fs.constants.F_OK)
+            .then(() => true).catch(() => false)
+    }
 }
 
 module.exports = Hotfile
