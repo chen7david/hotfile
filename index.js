@@ -75,10 +75,10 @@ class Hotfile {
             }).catch(() => false)
     }
 
-    async moveTo(toPath){
+    async moveTo(toPath, name){
         if(toPath instanceof Hotfile) {
             if(!toPath.isDirectory) throw('you can not move to a file, please provide a directory path')
-            toPath = toPath.path
+            toPath = name ? p.join(toPath.parent, name) : toPath.path
         }
         if(!p.extname(toPath)) toPath = p.join(toPath, this.filename())
         return fs.promises.rename(this.path, toPath).then(async () => {
