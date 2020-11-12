@@ -78,7 +78,7 @@ class Hotfile {
     async moveTo(toPath, name){
         if(toPath instanceof Hotfile) {
             if(!toPath.isDirectory) throw('you can not move to a file, please provide a directory path')
-            toPath = name ? p.join(toPath.parent, name) : toPath.path
+            toPath = name ? p.join(toPath.path, name) : toPath.path
         }
         if(!p.extname(toPath)) toPath = p.join(toPath, this.filename())
         if(await this.exists(toPath)) return false
