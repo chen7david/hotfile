@@ -81,6 +81,7 @@ class Hotfile {
             toPath = name ? p.join(toPath.parent, name) : toPath.path
         }
         if(!p.extname(toPath)) toPath = p.join(toPath, this.filename())
+        if(await this.exists(toPath)) return false
         return fs.promises.rename(this.path, toPath).then(async () => {
                 await Object.assign(this, new Hotfile(toPath))
                 return true
