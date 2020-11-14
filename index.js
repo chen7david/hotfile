@@ -32,9 +32,10 @@ class Hotfile {
     }
 
     static async readdir(path, options = {}){
-        const { model, exclude } = options
+        const { model, exclude, include } = options
         let items = await fs.promises.readdir(path)
-        if(exclude) items = items.filter(item => !(exclude).test(item))
+        if(exclude) items = items.filter(item => !exclude.find(regex => (regex).test(item)))
+        if(include) items = items.filter(item => include.find(regex => (regex).test(item)))
         return items.map(i => model ? new model(p.resolve(path,i)) : new Hotfile(p.resolve(path,i)))
     }
 

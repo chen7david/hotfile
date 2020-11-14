@@ -1,10 +1,10 @@
 {
   "name": "hotfile",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js"
+    "dev": "nodemon test.js"
   },
   "repository": {
     "type": "git",
