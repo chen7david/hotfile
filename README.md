@@ -41,5 +41,11 @@ const someAsyncFucn = async () => {
         cb,
         exclude: ['node_modules', 'exact_name_of_unwated_file', 'DS_Store']
     })
+
+    // 7. exclude all hidden files
+    await myfolder.laodChildren({
+        cb,
+        deny: [ /(^|\/)\.[^\/\.]/g, /.*\.mp4/g]
+    })
 }
 ```
