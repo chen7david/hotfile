@@ -1,115 +1,45 @@
-# hotfile
+# Hotfile
 
+### Usage
+
+#### instantiation
 ```js
-const directory = '/some/directory/path'
-const file = '/some/file/path.ext'
-const HF = require('hotfile')
+const { Hotfolder, Hotfile, Hot } = require('hotfile')
+// const myfolder = require('hotfile')('./myfolder')
+const dirpath = './myfolder' 
+const filepath = './myfile.txt'
+const myfolder = new Hotfolder(dirpath)
+const myfile = new Hotfile(filepath)
 
-const someAsyncFunction = async () => {
-    const hotfiles = await HF.map(directory)
-    const hotfile = new HF(file)
-    const hotdir = hotfiles[0]
-    const newdir = await hotdir.appendDirectory('subtitles')
-}
-```
+const someAsyncFucn = async () => {
 
-```js
-const hotdir = new HF(directory)
-await hotdir.rename('newfilename', 'ext')
+    // 1. create sub-folders
+    const sub1folder = await myfolder.createFolder('subfolder-01')
+    const sub2folder = await myfolder.createFolder('subfolder-02')
 
-const hotfile = new HF(file)
-await hotfile.moveTo(hotdir)
-```
-### Exclude all Hidden Files
-```js
-const items = await hotfile.map(someFolderPath, {
-    exclude: /(^|\/)\.[^\/\.]/g,
-    model: SomeModelThatInheritsFromHotfile
-})
-```
+    // 2. create file in folder
+    const file = await subfolder.create('summer.js')
 
-### Create a Hotfile Wrapper Class
-Note that all wrapper class objects must inherit from the Hotfile class.
+    // 3. move file to another folder
+    await file.setNameTo('water').setBasenameTo('nemo.mp4').moveTo(sub2folder)
 
-```js
-const HF = require('hotfile')
+    // 4. load subfolders with their files
+    await myfolder.laodChildren()
 
-class SomeName extends HF {
-    constructor(path){
-        super(path)
-        // write your code here ... 
-    }
-}
-```
+    // 5. load subfolders, their files and for callback for each child
+    const cb = async (item) => {
+        if(item.isFile){
+            // later files here
+        }else {
+            // later folders here
+        }
+    } 
+    await myfolder.laodChildren({cb})
 
-### Some Usefull Methods you might want to use in your wrapper class
-
-```js
-const HF = require('hotfile')
-
-class SomeName extends HF {
-    constructor(path){
-        super(path)
-        // write your code here ... 
-    }
-
-    filename(name, ext){
-        if(ext) this.ext = ext
-        return [
-            name || this.name, 
-            this.ext && this.ext.replace('.','') || null
-        ].filter(e => e != null).join('.')
-    }
-    
-    /* rewriting map function with default settings */
-    static async map(path, options = {}){
-        return await super.map(path, {
-            exclude: /(^|\/)\.[^\/\.]/g,
-            model: this
-        })
-    }
-
-    async rename(name, ext){
-        if(ext) this.ext = ext
-        const toPath = this.parent + '/' + this.filename(name)
-        return await this.move(toPath)
-    }
-
-    async moveTo(toPath){
-        if(toPath instanceof Hotfile && toPath.isDirectory) toPath = toPath.path
-        toPath = toPath + '/' + this.filename()
-        return fs.promises.rename(this.path, toPath).then(async () => {
-                await Object.assign(this, new Hotfile(toPath))
-                return true
-        }).catch(() => false)
-    }
-
-    async move(toPath){
-        return fs.promises.rename(this.path, toPath).then(async () => {
-                await Object.assign(this, new Hotfile(toPath))
-                return true
-        }).catch((err) => {
-            console.log(err)
-            return false
-        })
-    }
-
-    async appendDirectory(name){
-        if(this.isFile) throw('append only works on directories')
-        let path = this.path + '/' + name
-        return fs.promises.mkdir(path, { recursive: true })
-            .then(() => {
-                const dir = new Hotfile(path)
-                this.children.push(dir)
-                return dir
-            }).catch(() => false)
-    }
-
-    async delete(){
-        return fs.promises.unlink(this.path).then(async () => {
-            await Object.assign(this,{parent: null, path: null, name: null, metadata: null})
-            return true
-        }).catch(() => false)
-    }
+    // 6. ignore children that are included
+    await myfolder.laodChildren({
+        cb,
+        exclude: ['node_modules', 'exact_name_of_unwated_file', 'DS_Store']
+    })
 }
 ```
