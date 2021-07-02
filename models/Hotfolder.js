@@ -28,7 +28,7 @@ class Hotfolder extends Hot {
         return file
     }
 
-    async createFolder(name, options = { recursive: true }){
+    async createFolder(name, options = { recursive: true, force:false }){
         const path = p.join(this.path, name)
         await this.mkdir(path, options)
         if(!force && await this.exists(path)) return null
