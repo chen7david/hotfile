@@ -21,16 +21,17 @@ class Hotfolder extends Hot {
     async create(name, data = '', force = false){
         const Hotfile = require('./Hotfile')
         const path = p.join(this.path, name)
-        if(!force || await this.exists(path)) return false
+        if(!force && await this.exists(path)) return null
         await fs.promises.appendFile(path, data)
-        this.children.push(new Hotfile(path))
-        return true
+        const file = new Hotfile(path)
+        this.children.push(file)
+        return file
     }
 
     async createFolder(name, options = { recursive: true }){
         const path = p.join(this.path, name)
-        console.log({path})
         await this.mkdir(path, options)
+        if(!force && await this.exists(path)) return null
         const folder = new Hotfolder(path)
         this.children.push(folder)
         return folder

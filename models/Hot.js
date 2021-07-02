@@ -27,7 +27,7 @@ class Hot {
 
     async mkdir(path, options = {}){
         const { recursive, force } = options
-        if(await this.exists(path) && !force) return false
+        if(!force && await this.exists(path)) return false
         try {
             await fs.promises.mkdir(path, { recursive })
             return true
