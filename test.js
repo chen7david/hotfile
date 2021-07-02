@@ -1,17 +1,17 @@
-const Hotile = require('./index')
-const dd = (val) => console.log(val)
-const p = require('path')
-const Hotfile = require('./index')
-const dirpath = p.resolve(__dirname, '../', 'dirtest')
+global.z = (v) => console.log(v)
+const { Hotfolder, Hotfile, Hot } = require('./index')
+// const myfolder = require('hotfile')('./myfolder')
+const dirpath = './myfolder'
+const filepath = './myfile.txt'
+const myfolder = new Hotfolder(dirpath)
+const myfile = new Hotfile(filepath)
 
-const run = async () => {
-    const map = await Hotfile.map(dirpath, {
-        exclude: [
-            /(^|\/)\.[^\/\.]/g,
-            /@eaDir/g,
-        ]
-    })
-    dd({map})
+const someAsyncFucn = async () => {
+    // create sub-folders
+    const subfolder = await myfolder.createFolder('subfolder-03')
+    z({subfolder})
+    const file = await subfolder.create('winter.js')
+    
 }
 
-run()
+someAsyncFucn()
