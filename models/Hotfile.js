@@ -51,7 +51,7 @@ class Hotfile extends Hot {
 
     async moveTo(instance = null){
         const Hotfolder = require('./Hotfolder')
-        console.log({i:instance instanceof Hotfile})
+        console.log({i:instance instanceof Hotfolder})
         if(instance && (!(instance instanceof Hotfolder) && !(instance instanceof Hotfile))) 
             throw(new Error(`moveTo() expects Hotfolder instace or null, ${instance} provided`))
         let destDir = this.parent
