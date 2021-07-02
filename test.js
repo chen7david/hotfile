@@ -9,7 +9,7 @@ const myfile = new Hotfile(filepath)
 const someAsyncFucn = async () => {
     // create sub-folders
     const subfolder = await myfolder.createFolder('subfolder-03')
-    z({subfolder})
+    const subfolder2 = await subfolder.createFolder('subfolder-04')
     const file = await subfolder.create('winter.js')
     
 }
