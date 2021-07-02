@@ -21,7 +21,6 @@ class Hotfolder extends Hot {
     async create(name, data = '', force = false){
         const Hotfile = require('./Hotfile')
         const path = p.join(this.path, name)
-        console.log(path)
         if(!force && await this.exists(path)) return new Hotfile(path)
         await fs.promises.appendFile(path, data)
         const file = new Hotfile(path)
