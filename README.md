@@ -11,14 +11,14 @@ const filepath = './myfile.txt'
 const myfolder = new Hotfolder(dirpath)
 const myfile = new Hotfile(filepath)
 ```
-### 0. place your code in an asycn function
+#### 0. place your code in an asycn function
 ```js
 const someAsyncFucn = async () => {
     // NOTE: all the code below shuold be placed in an asycn function
 }
 
 ```
-### 1. create sub-folders
+#### 1. create sub-folders
 ```js
 
     const sub1folder = await myfolder.createFolder('subfolder-01')
@@ -26,20 +26,20 @@ const someAsyncFucn = async () => {
 
 ```
 
-### 2. create file in folder
+#### 2. create file in folder
 ```js
     const file = await subfolder.create('summer.js')
 ```
 
-### 3. move file to another folder
+#### 3. move file to another folder
 ```js
     await file.setNameTo('water').setBasenameTo('nemo.mp4').moveTo(sub2folder)
 ```
-### 4. load subfolders with their files
+#### 4. load subfolders with their files
 ```js
     await myfolder.laodChildren()
 ```
-### 5. load subfolders, their files and for callback for each child
+#### 5. load subfolders, their files and for callback for each child
 ```js
     const cb = async (item) => {
         if(item.isFile){
@@ -50,14 +50,14 @@ const someAsyncFucn = async () => {
     } 
     await myfolder.laodChildren({cb})
 ```
-### 6. ignore children that are included
+#### 6. ignore children that are included
 ```js
     await myfolder.laodChildren({
         cb,
         exclude: ['node_modules', 'exact_name_of_unwated_file', 'DS_Store']
     })
 ```
-### 7. exclude all hidden files
+#### 7. exclude all hidden files
 ```js
     await myfolder.laodChildren({
         cb,
