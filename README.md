@@ -11,6 +11,7 @@ const filepath = './myfile.txt'
 const myfolder = new Hotfolder(dirpath)
 const myfile = new Hotfile(filepath)
 ```
+### 0. place your code in an asycn function
 ```js
 const someAsyncFucn = async () => {
     // NOTE: all the code below shuold be placed in an asycn function
