@@ -13,6 +13,8 @@ const myfile = new Hotfile(filepath)
 ```
 ```js
 const someAsyncFucn = async () => {
+    // NOTE: all the code below shuold be placed in an asycn function
+}
 
 ```
 ### 1. create sub-folders
@@ -60,5 +62,5 @@ const someAsyncFucn = async () => {
         cb,
         deny: [ /(^|\/)\.[^\/\.]/g, /.*\.mp4/g]
     })
-}
+
 ```
