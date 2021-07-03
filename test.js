@@ -9,9 +9,9 @@ const myfolder = new Hotfolder(dirpath)
 
 const someAsyncFucn = async () => {
     // create sub-folders
-    const subfolder = await myfolder.createFolder('subfolder-05')
+    // const subfolder = await myfolder.createFolder('subfolder-05')
     // const subfolder2 = await subfolder.createFolder('subfolder-04')
-    const file = await subfolder.create('summer.js')
+    // const file = await subfolder.create('summer.js')
     // await file.setNameTo('water').moveTo(subfolder)
 }
 
