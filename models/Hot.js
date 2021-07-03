@@ -37,6 +37,26 @@ class Hot {
         }
     }
 
+    static exists(path){
+        let flag = true
+        try{
+          fs.accessSync(path, fs.constants.F_OK)
+        }catch(e){
+          flag = false
+        }
+        return flag
+    }
+
+    static mkdir(path, options = { recursive: true }){
+        let flag = true
+        try{
+            fs.mkdirSync(path, options)
+        }catch(e){
+          flag = false
+        }
+        return flag
+    }
+
     async exists(path){
         try {
             await fs.promises.access(path, fs.constants.F_OK)
