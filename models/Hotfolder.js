@@ -38,6 +38,16 @@ class Hotfolder extends Hot {
         return folder
     }
 
+    createFolderSync(name, options = { recursive: true }){
+        const path = p.join(this.path, name)
+        const { force } = options
+        this.mkdirSync(path, options)
+        if(!force && this.existsSync(path)) return new Hotfolder(path)
+        const folder = new Hotfolder(path)
+        this.children.push(folder)
+        return folder
+    }
+
     async loadChildren(options = {}){
         if(!this.isFile) this.children = await this.scandir(this.path,options)
         return this

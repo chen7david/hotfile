@@ -37,6 +37,16 @@ class Hot {
         }
     }
 
+    mkdirSync(path, options = { recursive: true }){
+        let flag = true
+        try{
+            fs.mkdirSync(path, options)
+        }catch(e){
+          flag = false
+        }
+        return flag
+    }
+
     static exists(path){
         let flag = true
         try{
@@ -64,6 +74,16 @@ class Hot {
         } catch (err) {
             if(err.message.includes('no such file or directory')) return false
         }
+    }
+
+    existsSync(path){
+        let flag = true
+        try{
+          fs.accessSync(path, fs.constants.F_OK)
+        }catch(e){
+          flag = false
+        }
+        return flag
     }
 
     async rename(from, to){
