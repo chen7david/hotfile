@@ -13,6 +13,8 @@ const someAsyncFucn = async () => {
     // const subfolder2 = await subfolder.createFolder('subfolder-04')
     // const file = await subfolder.create('summer.js')
     // await file.setNameTo('water').moveTo(subfolder)
+    await myfolder.loadChildren()
+    console.log(myfolder)
 }
 
 someAsyncFucn()
