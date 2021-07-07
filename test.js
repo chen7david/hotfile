@@ -1,9 +1,9 @@
 global.z = (v) => console.log(v)
 const { Hotfolder, Hotfile, Hot } = require('./index')
 // const myfolder = require('hotfile')('./myfolder')
-const dirpath = './myfolder'
+const dirpath = './myfolder/sub01/sub02'
 const filepath = './myfile.txt'
-if(!Hot.exists(dirpath)) Hot.mkdir(dirpath)
+// if(!Hot.exists(dirpath)) Hot.mkdir(dirpath)
 const myfolder = new Hotfolder(dirpath)
 // const myfile = new Hotfile(filepath) 
 

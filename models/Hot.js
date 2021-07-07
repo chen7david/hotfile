@@ -4,6 +4,7 @@ const fs = require('fs')
 class Hot {
 
     constructor(path){
+        if(p.extname(path) == "" && !this.existsSync(path)) this.mkdirSync(path)
         const stat = fs.statSync(path)
         this.isFile = stat.isFile()
         this.path = p.resolve(path)
