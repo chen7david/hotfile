@@ -47,7 +47,9 @@ someAsyncFunction()
 }
 ```
 
-### Diagram A
+### Documentation
+
+#### Diagram A
 Below is a tree diagram of the folders and files that we will be using in this documentation. This diagram will hereinafter be referred to as the "Diagram A"
 
 ```cmd
