@@ -105,10 +105,14 @@ const aHotFile = Hotfile(SOME_FILE_PATH)
 ```
 
 #### Options
-
+When you want to load the subfolders of a hotfile folder instance can specify certain parameters by passing a options object to the loadChildren function like so: <code>$ instance.loadChildren(options)</code>
 ```js
-const SOME_FOLDER_PATH = 'home'
-const SOME_FILE_PATH = 'home/a/a subtitle file.en.srt'
-const aHotFolder = require('hotfile')(SOME_FOLDER_PATH)
-const aHotFile = require('hotfile')(SOME_FILE_PATH)
+const options = {
+    depth: 3, // how deep down the directory tree it loads items, this is 0 by default.
+    cb: async (item) => { /* code in here runs for each loaded file and folder */ }, 
+    exclude: ['strings'], // files and folders matching any of the strings in this array will not be loaded
+    include: ['strings'], // files and folders matching any of the strings in this array will be loaded,
+    $exclude: ['regex'], // files and folders matching any of the regular expressions in this array will not be loaded
+    $include: ['regex'] // files and folders matching any of the regular expressions in this array will be loaded,
+}
 ```
