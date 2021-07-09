@@ -50,7 +50,7 @@ someAsyncFunction()
 ### Documentation
 
 #### Diagram A
-Below is a tree diagram of the folders and files that we will be using in this documentation. This diagram will hereinafter be referred to as the "Diagram A"
+Below is a tree diagram of the folders and files that we will be using in this documentation. This diagram will hereinafter be referred to as "Diagram A"
 
 ```cmd
 /Users/YOUR_USER_NAME/Desktop/YOUR_PROJECT_NAME/home
@@ -82,19 +82,19 @@ Below is a tree diagram of the folders and files that we will be using in this d
 
 directory: 10 file: 15
 ```
-### Usage
+#### Usage
 
 
 #### Instantiation
 
-#### Example 1
+##### Example 1
 ```js
 const SOME_FOLDER_PATH = 'home'
 const SOME_FILE_PATH = 'home/a/a subtitle file.en.srt'
 const aHotFolder = require('hotfile')(SOME_FOLDER_PATH)
 const aHotFile = require('hotfile')(SOME_FILE_PATH)
 ```
-#### Example 2
+##### Example 2
 If you would like to access the Hotfile and or HotfileError class
 ```js
 const SOME_FOLDER_PATH = 'home'
