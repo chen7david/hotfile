@@ -108,7 +108,9 @@ const aHotFile = Hotfile(SOME_FILE_PATH)
 When you want to load the subfolders of a hotfile folder instance can specify certain parameters by passing an options object to the loadChildren function like so: <code>instance.loadChildren(/* options */)</code>
 ```js
 const options = {
+    id: true, // generates md5 hashes of an item's path and adds that to the item as its id property
     depth: 3, // how deep down the directory tree it loads items, this is 0 by default.
+    files: true, // constructs an array of files present in the loaded folders and attaches it to the instance that called the load method.
     cb: async (item) => { /* code in here runs for each loaded file and folder */ }, 
     exclude: ['strings'], // files and folders matching any of the strings in this array will not be loaded
     include: ['strings'], // files and folders matching any of the strings in this array will be loaded
@@ -126,13 +128,14 @@ In this example we add md5 ids to each loaded item
 const someAsyncFunction = async () => {
 
     await aHotFolder.loadChildren({
+        id: true,
         exclude: ['.DS_Store'],
         depth: 8,
         cb: async (item) => {
             item.id = item.md5Id(item.path)
         }
     })
-    
+
 }
 someAsyncFunction()
 ```
