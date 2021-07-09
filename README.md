@@ -105,7 +105,7 @@ const aHotFile = Hotfile(SOME_FILE_PATH)
 ```
 
 #### Options
-When you want to load the subfolders of a hotfile folder instance can specify certain parameters by passing a options object to the loadChildren function like so: <code>$ instance.loadChildren(options)</code>
+When you want to load the subfolders of a hotfile folder instance can specify certain parameters by passing an options object to the loadChildren function like so: <code>instance.loadChildren(/* options */)</code>
 ```js
 const options = {
     depth: 3, // how deep down the directory tree it loads items, this is 0 by default.
