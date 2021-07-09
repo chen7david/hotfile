@@ -12,7 +12,7 @@
   },
   "keywords": ["folder", "files", "dirtree", "readdir"],
   "author": "David M.Chen",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/chen7david/hotfile/issues"
   },
