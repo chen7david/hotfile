@@ -162,14 +162,13 @@ someAsyncFunction()
 #### Instance Methods
 
 ##### Example 1: Creating a Subfolder
-You can create subfolders in Hotfile folder instances by using the createFolder or createFolderSync method. Bothe of these return an instance of the newly created subfolder. 
+You can create subfolders in Hotfile folder instances by using the createFolder or createFolderSync method. Both of these return an instance of the newly created subfolder. 
 
 ```js
 instance.createFolderSync(string) -> instance
 instance.createFolder(string) -> instance
 ```
-
-
+In the following example we create 4 nested folders A,B,C, and D.
 ```js
 const aHotFolderA = require('hotfile')(SOME_FOLDER_PATH)
 const foldername = 'some-name-not-a-path'
@@ -179,5 +178,32 @@ const aHotfolderD = aHotfolderC.createFolderSync(foldername)
 ```
 
 ##### Example 2: Moving a Hotfile
-<code> async instance.moveTo(string) -> instance</code><br>
 Hotfile file instances can be move from one Hotfile folder instance to another. 
+```js
+async instance.moveTo(instanec) -> instance
+```
+Hotfile file instances can be move from one Hotfile folder instance to another. 
+
+```js
+const aHotFolderA = require('hotfile')(SOME_FOLDER_PATH_A)
+const aHotFolderB = require('hotfile')(SOME_FOLDER_PATH_A)
+const aHotFile = require('hotfile')(SOME_FILE_PATH)
+
+await aHotfile.moveTo(aHotFolderA)
+await aHotfile.moveTo(aHotFolderB)
+```
+
+
+##### Example 2: Deleting Hotfile file instance
+Hotfile file instances can be deleted from anywhere. 
+```js
+async instance.delete() -> boolean
+```
+Hotfile file instances can be move from one Hotfile folder instance to another. 
+
+```js
+const aHotFile = require('hotfile')(SOME_FILE_PATH)
+
+const result = await aHotfile.delete()
+
+```
