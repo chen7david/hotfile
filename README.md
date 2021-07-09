@@ -34,10 +34,8 @@ const someAsyncFunction = async () => {
             "children": []
         },
 
-        .
-        .
-        .
-        
+        ...
+
         {
             "isFile": true,
             "path": "home/an video file.mp4",
