@@ -164,8 +164,11 @@ someAsyncFunction()
 ##### Example 1: Creating a Subfolder
 You can create subfolders in Hotfile folder instances by using the createFolder or createFolderSync method. Bothe of these return an instance of the newly created subfolder. 
 
-<code>instance.createFolderSync(string) -> instance</code>
-<code>instance.createFolder(string) -> instance</code>
+```js
+instance.createFolderSync(string) -> instance
+instance.createFolder(string) -> instance
+```
+
 
 ```js
 const aHotFolderA = require('hotfile')(SOME_FOLDER_PATH)
@@ -176,5 +179,5 @@ const aHotfolderD = aHotfolderC.createFolderSync(foldername)
 ```
 
 ##### Example 2: Moving a Hotfile
-<code> async instance.moveTo(string) -> instance</code>
+<code> async instance.moveTo(string) -> instance</code><br>
 Hotfile file instances can be move from one Hotfile folder instance to another. 
