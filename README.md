@@ -2,7 +2,7 @@
 Hotfile makes working with folders and files in node-js easy and clear.
 
 
-### Getting Started
+## Getting Started
 1. <code>$ npm i hotfile</code>
 ```js
 const SOME_FOLDER_PATH = 'some-folder-path'
@@ -47,9 +47,9 @@ someAsyncFunction()
 }
 ```
 
-### Documentation
+## Documentation
 
-#### Diagram A
+### Diagram A
 Below is a tree diagram of the folders and files that we will be using in this documentation. This diagram will hereinafter be referred to as "Diagram A"
 
 ```cmd
@@ -82,19 +82,19 @@ Below is a tree diagram of the folders and files that we will be using in this d
 
 directory: 10 file: 15
 ```
-#### Usage
+### Usage
 
 
 #### Instantiation
 
-##### Example 1
+#### Example 1
 ```js
 const SOME_FOLDER_PATH = 'home'
 const SOME_FILE_PATH = 'home/a/a subtitle file.en.srt'
 const aHotFolder = require('hotfile')(SOME_FOLDER_PATH)
 const aHotFile = require('hotfile')(SOME_FILE_PATH)
 ```
-##### Example 2
+#### Example 2
 If you would like to access the Hotfile and or HotfileError class
 ```js
 const SOME_FOLDER_PATH = 'home'
@@ -104,7 +104,7 @@ const aHotFolder = Hotfile(SOME_FOLDER_PATH)
 const aHotFile = Hotfile(SOME_FILE_PATH)
 ```
 
-#### Options
+### Options
 When you want to load the subfolders of a hotfile folder instance can specify certain parameters by passing an options object to the loadChildren function like so: <code>instance.loadChildren(/* options */)</code>
 ```js
 const options = {
@@ -122,7 +122,7 @@ aHotFolder.loadChildren(options)
 ```
 Note: filters can not be mixed, as such only one of the four filters (include, exclude, $include, $exclude) may be included in an object.
 
-##### Example 1
+#### Example 1
 In this example we add md5 ids to each loaded item, load just 1 subfolder deep, collect the files in an array, filter out <code>.SD_Store</code> files, and run an async call back function which renames and moves all files to another Hotfile folder instance. 
 ```js
 const someAsyncFunction = async () => {
@@ -142,7 +142,7 @@ const someAsyncFunction = async () => {
 someAsyncFunction()
 ```
 
-##### Example 2
+#### Example 2
 In this example we load 5 levels deep and delete all files and folders. 
 ```js
 const someAsyncFunction = async () => {
@@ -159,9 +159,9 @@ someAsyncFunction()
 ```
 
 
-#### Instance Methods
+### Instance Methods
 
-##### Example 1: Creating a Subfolder
+#### Example 1: Creating a Subfolder
 You can create subfolders in Hotfile folder instances by using the createFolder or createFolderSync method. Both of these return an instance of the newly created subfolder. 
 
 ```js
@@ -177,7 +177,7 @@ const aHotfolderC = aHotfolderB.createFolderSync(foldername)
 const aHotfolderD = aHotfolderC.createFolderSync(foldername)
 ```
 
-##### Example 2: Moving a Hotfile
+#### Example 2: Moving a Hotfile
 Hotfile file instances can be move from one Hotfile folder instance to another. 
 ```js
 async instance.moveTo(instanec) -> instance
