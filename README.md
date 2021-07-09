@@ -222,7 +222,7 @@ const ext = '.mp4' // including the period is optional. It will work either way.
 const result = await aHotfile.setExtTo('mp4').moveTo()
 ```
 
-#### Example 5: Deleting File
+#### Example 5: Deleting a Hotlile
 Hotfile file instances can be deleted from anywhere. 
 ```js
 async instance.delete() -> boolean
