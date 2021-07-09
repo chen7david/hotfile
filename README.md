@@ -115,5 +115,24 @@ const options = {
     $exclude: ['regex'], // files and folders matching any of the regular expressions in this array will not be loaded
     $include: ['regex'] // files and folders matching any of the regular expressions in this array will be loaded
 }
+
+aHotFolder.loadChildren(options)
 ```
 Note: filters can not be mixed, as such only one of the four filters (include, exclude, $include, $exclude) may be included in an object.
+
+##### Example 1
+In this example we add md5 ids to each loaded item
+```js
+const someAsyncFunction = async () => {
+
+    await aHotFolder.loadChildren({
+        exclude: ['.DS_Store'],
+        depth: 8,
+        cb: async (item) => {
+            item.id = item.md5Id(item.path)
+        }
+    })
+    
+}
+someAsyncFunction()
+```
