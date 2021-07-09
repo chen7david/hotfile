@@ -194,7 +194,35 @@ await aHotfile.moveTo(aHotFolderB)
 ```
 
 
-#### Example 3: Deleting file
+#### Example 3: Renaming a File
+Hotfile file instances can be renamed. 
+```js
+instance.setNameTo(string) -> self
+```
+With Hotfiles renaming a file is made easy and clear with the setNameTo method.
+Note: the moveTo() method should be called for the rename to take place on the file system. Do not pass it any parameters when you call it. 
+
+```js
+const aHotFile = require('hotfile')(SOME_FILE_PATH)
+
+const result = await aHotfile.setNameTo('a cool new name').moveTo()
+```
+
+#### Example 4: Changing File Extension
+Hotfile file instances their extensions can be changed. 
+```js
+instance.setExtTo(string) -> self
+```
+With Hotfiles changeing file extensions is made easy and clear with the setExtTo method.
+Note: the moveTo() method should be called for the rename to take place on the file system. Do not pass it any parameters when you call it. 
+
+```js
+const aHotFile = require('hotfile')(SOME_FILE_PATH)
+const ext = '.mp4' // including the period is optional. It will work either way.
+const result = await aHotfile.setExtTo('mp4').moveTo()
+```
+
+#### Example 5: Deleting File
 Hotfile file instances can be deleted from anywhere. 
 ```js
 async instance.delete() -> boolean
@@ -205,5 +233,6 @@ Hotfile file instances can be move from one Hotfile folder instance to another.
 const aHotFile = require('hotfile')(SOME_FILE_PATH)
 
 const result = await aHotfile.delete()
-
 ```
+
+
