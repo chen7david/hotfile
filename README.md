@@ -111,8 +111,9 @@ const options = {
     depth: 3, // how deep down the directory tree it loads items, this is 0 by default.
     cb: async (item) => { /* code in here runs for each loaded file and folder */ }, 
     exclude: ['strings'], // files and folders matching any of the strings in this array will not be loaded
-    include: ['strings'], // files and folders matching any of the strings in this array will be loaded,
+    include: ['strings'], // files and folders matching any of the strings in this array will be loaded
     $exclude: ['regex'], // files and folders matching any of the regular expressions in this array will not be loaded
-    $include: ['regex'] // files and folders matching any of the regular expressions in this array will be loaded,
+    $include: ['regex'] // files and folders matching any of the regular expressions in this array will be loaded
 }
 ```
+Note: filters can not be mixed, as such only one of the four filters (include, exclude, $include, $exclude) may be included in an object.
