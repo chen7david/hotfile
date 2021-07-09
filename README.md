@@ -38,18 +38,27 @@ directory: 10 file: 15
 ### Usage
 
 
-#### instantiation
+#### Instantiation
 1. <code>$ npm i hotfile</code>
 
+#### Example 1
 ```js
 const SOME_FOLDER_PATH = 'home'
 const SOME_FILE_PATH = 'home/a/a subtitle file.en.srt'
 const aFolder = require('hotfile')(SOME_FOLDER_PATH)
 const aFile = require('hotfile')(SOME_FILE_PATH)
-// and if you would like to access the Hotfile and or HotfileError class
+```
+#### Example 2
+If you would like to access the Hotfile and or HotfileError class
+```js
+const SOME_FOLDER_PATH = 'home'
+const SOME_FILE_PATH = 'home/a/a subtitle file.en.srt'
 const { Hotfile, HotfileError } = require('hotfile')
+const aFolder = Hotfile(SOME_FOLDER_PATH)
+const aFile = Hotfile(SOME_FILE_PATH)
 ```
 
+#### 
 
 #### 0. place your code in an asycn function
 ```js
