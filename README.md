@@ -1,9 +1,8 @@
 # Hotfile
-Hotfile makes working with folders and files in node js easy and clear.
+Hotfile makes working with folders and files in node-js easy and clear.
 
 
-
-Below if a tree diagram of the folders and files that we will be using in this documentation. This diagram will hereinafter be refered to as the "directory diagram"
+Below is a tree diagram of the folders and files that we will be using in this documentation. This diagram will hereinafter be referred to as the "directory diagram"
 
 ```cmd
 /Users/YOUR_USER_NAME/Desktop/YOUR_PROJECT_NAME/home
