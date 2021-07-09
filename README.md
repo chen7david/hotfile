@@ -103,3 +103,12 @@ const { Hotfile, HotfileError } = require('hotfile')
 const aHotFolder = Hotfile(SOME_FOLDER_PATH)
 const aHotFile = Hotfile(SOME_FILE_PATH)
 ```
+
+#### Options
+
+```js
+const SOME_FOLDER_PATH = 'home'
+const SOME_FILE_PATH = 'home/a/a subtitle file.en.srt'
+const aHotFolder = require('hotfile')(SOME_FOLDER_PATH)
+const aHotFile = require('hotfile')(SOME_FILE_PATH)
+```
