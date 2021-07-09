@@ -129,13 +129,13 @@ const someAsyncFunction = async () => {
 
     await aHotFolder.loadChildren({
         id: true,
-        depth: 2,
+        depth: 1,
         files: true,
         exclude: ['.DS_Store'],
         cb: async (item) => {
             const name = item.md5Id(new Date().toISOString())
             const ext = 'mp4'
-            await item.setNameTo(name).setExtTo(ext).movieTo(anotherHotFolder)
+            await item.setNameTo(name).setExtTo(ext).moveTo(anotherHotFolder)
         }
     })
 }
