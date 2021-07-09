@@ -15,7 +15,7 @@ const someAsyncFunction = async () => {
     console.log(aHotFolder)
 
 }
-
+someAsyncFunction()
 ```
 
 ##### console.log(aHotFolder)
