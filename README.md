@@ -1,6 +1,42 @@
 # Hotfile
+Hotfile makes working with folders and files in node js easy and clear.
 
+
+
+Below if a tree diagram of the folders and files that we will be using in this documentation. This diagram will hereinafter be refered to as the "directory diagram"
+
+```cmd
+/Users/YOUR_USER_NAME/Desktop/YOUR_PROJECT_NAME/home
+├── 1
+|  ├── 2
+|  |  └── 3
+|  |     └── 4
+|  |        └── 5
+|  |           ├── a subtitle file.en copy.srt
+|  |           ├── an audio file.mp3
+|  |           └── an video file.mp4
+|  ├── a subtitle file.en copy.srt
+|  ├── an audio file.mp3
+|  └── an video file.mp4
+├── a
+|  ├── a subtitle file.en copy.srt
+|  ├── an audio file.mp3
+|  ├── an video file.mp4
+|  └── b
+|     └── c
+|        └── d
+|           └── e
+|              ├── a subtitle file.en copy.srt
+|              ├── an audio file.mp3
+|              └── an video file.mp4
+├── a subtitle file.en copy.srt
+├── an audio file.mp3
+└── an video file.mp4
+
+directory: 10 file: 15
+```
 ### Usage
+
 
 #### instantiation
 ```js

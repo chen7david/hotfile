@@ -54,10 +54,10 @@ class Hotfolder extends Hot {
     }
 
     async scandir(path, options = {}){
-        let { limit } = options
+        let { through } = options
         const items = await this.readdir(path, options)
-        limit = limit && limit < items.length ? limit : items.length
-        for(let i = 0; i < limit; i++)
+        if(!through) return items
+        for(let i = 0; i < items.length; i++)
             if(!items[i].isFile) items[i].children = await this.scandir(items[i].path, options)
         return items
     }
