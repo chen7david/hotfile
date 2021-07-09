@@ -194,7 +194,7 @@ await aHotfile.moveTo(aHotFolderB)
 ```
 
 
-#### Example 3: Deleting Hotfile file instance
+#### Example 3: Deleting file
 Hotfile file instances can be deleted from anywhere. 
 ```js
 async instance.delete() -> boolean
