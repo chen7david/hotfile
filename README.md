@@ -33,27 +33,11 @@ const someAsyncFunction = async () => {
             "size": 192,
             "children": []
         },
-        {
-            "isFile": false,
-            "path": "home/a",
-            "basename": "a",
-            "size": 192,
-            "children": []
-        },
-        {
-            "isFile": true,
-            "path": "home/a subtitle file.en.srt",
-            "basename": "a subtitle file.en.srt",
-            "size": 40,
-            "ext": ".srt"
-        },
-        {
-            "isFile": true,
-            "path": "home/an audio file.mp3",
-            "basename": "an audio file.mp3",
-            "size": 50,
-            "ext": ".mp3"
-        },
+
+        .
+        .
+        .
+        
         {
             "isFile": true,
             "path": "home/an video file.mp4",
