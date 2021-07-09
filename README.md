@@ -141,3 +141,19 @@ const someAsyncFunction = async () => {
 }
 someAsyncFunction()
 ```
+
+##### Example 2
+In this example we load 5 levels deep and delete all files and folders. 
+```js
+const someAsyncFunction = async () => {
+
+    await aHotFolder.loadChildren({
+        depth: 5,
+        files: true,
+        cb: async (item) => {
+            await item.delete()
+        }
+    })
+}
+someAsyncFunction()
+```
