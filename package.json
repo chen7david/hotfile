@@ -1,7 +1,7 @@
 {
   "name": "hotfile",
   "version": "0.2.0",
-  "description": "",
+  "description": "Hotfile makes working with folders and files in node-js easy and clear.",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon test.js"
@@ -10,8 +10,8 @@
     "type": "git",
     "url": "git+https://github.com/chen7david/hotfile.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["folder", "files", "dirtree", "readdir"],
+  "author": "David M.Chen",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/chen7david/hotfile/issues"
