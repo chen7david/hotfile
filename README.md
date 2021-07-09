@@ -123,19 +123,21 @@ aHotFolder.loadChildren(options)
 Note: filters can not be mixed, as such only one of the four filters (include, exclude, $include, $exclude) may be included in an object.
 
 ##### Example 1
-In this example we add md5 ids to each loaded item
+In this example we add md5 ids to each loaded item, load just 1 subfolder deep, collect the files in an array, filter out <code>.SD_Store</code> files, and run an async call back function which renames and moves all files to another Hotfile folder instance. 
 ```js
 const someAsyncFunction = async () => {
 
     await aHotFolder.loadChildren({
         id: true,
+        depth: 2,
+        files: true,
         exclude: ['.DS_Store'],
-        depth: 8,
         cb: async (item) => {
-            item.id = item.md5Id(item.path)
+            const name = item.md5Id(new Date().toISOString())
+            const ext = 'mp4'
+            await item.setNameTo(name).setExtTo(ext).movieTo(anotherHotFolder)
         }
     })
-
 }
 someAsyncFunction()
 ```
