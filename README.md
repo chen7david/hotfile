@@ -12,26 +12,26 @@ Below is a tree diagram of the folders and files that we will be using in this d
 |  |  └── 3
 |  |     └── 4
 |  |        └── 5
-|  |           ├── a subtitle file.en copy.srt
+|  |           ├── a subtitle file.en.srt
 |  |           ├── an audio file.mp3
-|  |           └── an video file.mp4
+|  |           └── a video file.mp4
 |  ├── a subtitle file.en copy.srt
 |  ├── an audio file.mp3
-|  └── an video file.mp4
+|  └── a video file.mp4
 ├── a
-|  ├── a subtitle file.en copy.srt
+|  ├── a subtitle file.en.srt
 |  ├── an audio file.mp3
 |  ├── an video file.mp4
 |  └── b
 |     └── c
 |        └── d
 |           └── e
-|              ├── a subtitle file.en copy.srt
+|              ├── a subtitle file.en.srt
 |              ├── an audio file.mp3
-|              └── an video file.mp4
-├── a subtitle file.en copy.srt
+|              └── a video file.mp4
+├── a subtitle file.en.srt
 ├── an audio file.mp3
-└── an video file.mp4
+└── a video file.mp4
 
 directory: 10 file: 15
 ```
@@ -39,14 +39,18 @@ directory: 10 file: 15
 
 
 #### instantiation
+1. <code>$ npm i hotfile</code>
+
 ```js
-const { Hotfolder, Hotfile, Hot } = require('hotfile')
-// const myfolder = require('hotfile')('./myfolder')
-const dirpath = './myfolder' 
-const filepath = './myfile.txt'
-const myfolder = new Hotfolder(dirpath)
-const myfile = new Hotfile(filepath)
+const SOME_FOLDER_PATH = 'home'
+const SOME_FILE_PATH = 'home/a/a subtitle file.en.srt'
+const aFolder = require('hotfile')(SOME_FOLDER_PATH)
+const aFile = require('hotfile')(SOME_FILE_PATH)
+// and if you would like to access the Hotfile and or HotfileError class
+const { Hotfile, HotfileError } = require('hotfile')
 ```
+
+
 #### 0. place your code in an asycn function
 ```js
 const someAsyncFucn = async () => {
