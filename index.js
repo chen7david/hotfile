@@ -200,7 +200,7 @@ class Hotfile {
     }
 
     async loaddir(path, depth = 0, options = {}){
-        const { id, cb, files, exclude, include, $include, $exclude } = options
+        const { id, cb, files, exclude, include, $include, $exclude, allow } = options
         let items = await fs.promises.readdir(path)
 
         /* FILTERS */
@@ -208,7 +208,7 @@ class Hotfile {
         if(include) items = items.filter(o => include.includes(o))
         if($exclude) items = items.filter(o => !$exclude.find(regex => (regex).test(o)))
         if($include) items = items.filter(o => $include.find(regex => (regex).test(o)))
-        
+
         items = items.map(o => new Hotfile(p.join(path, o)))
 
         for(let i = 0; i < items.length; i++){
@@ -218,7 +218,12 @@ class Hotfile {
             if(id) items[i].id = this.md5Id(items[i].path)
             if(files && items[i].isFile) {
                 if(!this.files) this.files = []
-                this.files.push(items[i])
+                if(allow){
+                    const ext = items[i].ext
+                    if(allow.includes(ext)) this.files.push(items[i])
+                }else{
+                    this.files.push(items[i])
+                }
             }
 
             if(!items[i].isFile && depth > 0){
