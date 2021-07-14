@@ -219,7 +219,7 @@ class Hotfile {
             if(files && items[i].isFile) {
                 if(!this.files) this.files = []
                 if(allow){
-                    const ext = items[i].ext
+                    const ext = items[i].ext.toLowerCase()
                     if(allow.includes(ext)) this.files.push(items[i])
                 }else{
                     this.files.push(items[i])
