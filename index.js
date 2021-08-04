@@ -49,7 +49,8 @@ class Hotfile {
     }
 
     static mkdirSync(path, options = { recursive: true }){
-        if(!p.extname(path) == "") 
+        const stat = fs.statSync(path)
+        if(stat.isFile(path)) 
             throw(new Error(`mkdirSync expects a folder path, but ${path} provided`))
         let flag = true
         try{
