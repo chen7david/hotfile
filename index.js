@@ -69,8 +69,6 @@ class Hotfile {
     }
 
     mkdirSync(path, options = { recursive: true }){
-        if(!p.extname(path) == "") 
-            throw(new Error(`mkdirSync expects a folder path, but ${path} provided`))
         let flag = true
         try{
             fs.mkdirSync(path, options)
@@ -100,8 +98,6 @@ class Hotfile {
     }
 
     async mkdir(path, options = {}){
-        if(!p.extname(path) == "") 
-            throw(new Error(`mkdir expects a folder path, but ${path} provided`))
         const { recursive, force } = options
         if(!force && await this.exists(path)) return false
         try {
