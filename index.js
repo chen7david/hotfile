@@ -63,7 +63,7 @@ class Hotfile {
         for (let i = 0; i < items.length; i++) {
             const path = resolve(this.path, items[i])
             const hotfile = new Hotfile(path, options.options ? options.options: {})
-            if(typeof options.filter === 'function' && ! await options.filter(hotfile)) continue
+            if(typeof options.filter === 'function' && !(await options.filter(hotfile) || hotfile.isDirectory)) continue
             if (typeof options.cb === 'function') await options.cb(hotfile)
             this.children.push(hotfile)
 
