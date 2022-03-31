@@ -57,6 +57,7 @@ class Hotfile {
     }
 
     async loadChildren(options = {}, currentDepth) {
+        this.children = []
         typeof currentDepth === 'number' ? currentDepth++ : currentDepth = 1
         const items = await fs.promises.readdir(this.path)
         for (let i = 0; i < items.length; i++) {
@@ -75,6 +76,7 @@ class Hotfile {
     }
 
     loadChildrenSync(options = {}, currentDepth) {
+        this.children = []
         typeof currentDepth === 'number' ? currentDepth++ : currentDepth = 1
         const items = fs.readdirSync(this.path)
         for (let i = 0; i < items.length; i++) {
