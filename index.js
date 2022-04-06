@@ -123,7 +123,8 @@ class Hotfile {
         return this
     }
 
-    async moveTo(destinationPath) {
+    async moveTo(destinationPath, options = {}) {
+        const { replace } = options
         const hotfolder = destinationPath instanceof Hotfile
             ? destinationPath
             : new Hotfile(destinationPath)
@@ -131,6 +132,7 @@ class Hotfile {
         const oldPath = this.path
         const newPath = resolve(hotfolder.path, this.base)
         this.updatePath(newPath)
+        if(await this.exists(newPath) && !replace) return null
         await fs.promises.rename(oldPath, newPath)
         return this
     }
