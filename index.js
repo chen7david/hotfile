@@ -19,6 +19,7 @@ class Hotfile {
         let flag = true
         try {
             fs.mkdirSync(path, options)
+            flag = new Hotfile(path)
         } catch (e) {
             flag = false
         }
@@ -49,7 +50,7 @@ class Hotfile {
         if (!force && await this.exists(path)) return false
         try {
             await fs.promises.mkdir(path, { recursive })
-            return true
+            return new Hotfile(path)
         } catch (err) {
             console.log(err)
             return false
