@@ -4,6 +4,9 @@ const { resolve, parse } = require('path')
 class Hotfile {
 
     constructor(path, options = {}) {
+        if(options.mkdir && !Hotfile.existsSync(path)){
+            Hotfile.mkdirSync(path)
+        }
         const stat = fs.lstatSync(path)
         const { ext, name, base } = parse(path)
         this.isDirectory = stat.isDirectory()
