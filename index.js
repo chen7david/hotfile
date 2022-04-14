@@ -135,7 +135,7 @@ class Hotfile {
         const oldPath = this.path
         const newPath = resolve(hotfolder.path, this.base)
         this.updatePath(newPath)
-        if(await this.exists(newPath) && !replace) return null
+        if(await Hotfile.exists(newPath) && !replace) return null
         await fs.promises.rename(oldPath, newPath)
         return this
     }
