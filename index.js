@@ -4,7 +4,7 @@ const { resolve, parse } = require('path')
 class Hotfile {
 
     constructor(path, options = {}) {
-        if(options.mkdir && !Hotfile.existsSync(path)){
+        if (options.mkdir && !Hotfile.existsSync(path)) {
             Hotfile.mkdirSync(path)
         }
         const stat = fs.lstatSync(path)
@@ -73,7 +73,11 @@ class Hotfile {
 
             if (hotfile.isDirectory) {
                 if ((typeof options.depth === 'number') && !(options.depth >= currentDepth)) continue
-                await hotfile.loadChildren(options, currentDepth)
+                try {
+                    await hotfile.loadChildren(options, currentDepth)
+                } catch (error) {
+                    console.log(error)
+                }
             }
         }
         return this
@@ -92,7 +96,11 @@ class Hotfile {
 
             if (hotfile.isDirectory) {
                 if ((typeof options.depth === 'number') && !(options.depth >= currentDepth)) continue
-                hotfile.loadChildrenSync(options, currentDepth)
+                try {
+                    hotfile.loadChildrenSync(options, currentDepth)
+                } catch (error) {
+                    console.log(error)
+                }
             }
         }
         return this
@@ -101,6 +109,14 @@ class Hotfile {
     async createChildDirectory(directoryName) {
         const newPath = resolve(this.path, directoryName)
         await Hotfile.mkdir(newPath)
+        const hotfolder = new Hotfile(newPath)
+        this.children.push(hotfolder)
+        return hotfolder
+    }
+
+    createChildDirectorySync(directoryName) {
+        const newPath = resolve(this.path, directoryName)
+        Hotfile.mkdirSync(newPath)
         const hotfolder = new Hotfile(newPath)
         this.children.push(hotfolder)
         return hotfolder
@@ -118,10 +134,17 @@ class Hotfile {
         return this
     }
 
+    updateMetadata(newPath) {
+        this.path = newPath
+        const { name, base, ext } = parse(newPath)
+        Object.assign(this, { name, base, ext })
+        return this
+    }
+
     async rename(newbase) {
         const oldPath = this.path
         const newPath = this.path.replace(this.base, newbase)
-        this.updatePath(newPath)
+        this.updateMetadata(newPath)
         await fs.promises.rename(oldPath, newPath)
         return this
     }
@@ -135,7 +158,7 @@ class Hotfile {
         const oldPath = this.path
         const newPath = resolve(hotfolder.path, this.base)
         this.updatePath(newPath)
-        if(await Hotfile.exists(newPath) && !replace) return null
+        if (await Hotfile.exists(newPath) && !replace) return null
         await fs.promises.rename(oldPath, newPath)
         return this
     }

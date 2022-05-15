@@ -1,6 +1,6 @@
 {
   "name": "hotfile",
-  "version": "0.3.3",
+  "version": "0.3.5",
   "description": "Hotfile makes working with folders and files in node-js easy and clear.",
   "main": "index.js",
   "scripts": {
