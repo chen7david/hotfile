@@ -10,17 +10,19 @@ export interface HotfileOptions {
     flatten?: boolean;
 }
 export declare class Hotfile {
-    isDirectory?: boolean;
-    name?: string;
-    path?: string;
+    isDirectory: boolean;
+    id?: string;
+    name: string;
+    path: string;
     relativePath?: string;
-    base?: string;
-    size?: number;
+    base: string;
+    size: number;
     children?: Hotfile[];
     ext?: string;
     stat?: fs.Stats;
     constructor(path: string, options?: HotfileOptions);
     static existsSync(path: string): boolean;
+    loadChildren(options?: HotfileOptions, depthTracker?: number): Promise<this>;
 }
 export {};
 //# sourceMappingURL=index.d.ts.map

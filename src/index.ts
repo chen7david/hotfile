@@ -11,6 +11,8 @@ export interface HotfileOptions {
   extendedProperties?: HotfileAddOnProperty[]
   /** if enabled, returns an flat (one-dimensional) list with all scanned files */
   flatten?: boolean
+
+  cb?: (item: Hotfile) => Promise<Hotfile>
 }
 
 const md5 = (seed: string) => createHash('md5').update(seed).digest('hex')
@@ -40,7 +42,7 @@ export class Hotfile {
     if (options?.extendedProperties?.includes('id')) this.id = md5(this.path)
   }
 
-  static existsSync(path: string) {
+  static existsSync(path: string): boolean {
     let flag = true
     try {
       fs.accessSync(path, fs.constants.F_OK)
@@ -50,16 +52,23 @@ export class Hotfile {
     return flag
   }
 
-  async loadChildren(options?: HotfileOptions, depthTracker: number = 1) {
+  async delete(): Promise<boolean> {
+    await fs.promises.unlink(this.path)
+    return true
+  }
+
+  async loadChildren(
+    options?: HotfileOptions,
+    depthTracker: number = 1
+  ): Promise<Hotfile> {
     const fileNames = await fs.promises.readdir(this.path)
     depthTracker++
     for (let i = 0; i < fileNames.length; i++) {
       const path = resolve(this.path, fileNames[i])
       const hotfile = new Hotfile(path, options)
       this.children?.push(hotfile)
-      if (hotfile.isDirectory && depthTracker <= (options?.depth || 1)) {
+      if (hotfile.isDirectory && depthTracker <= (options?.depth || 1))
         await hotfile.loadChildren(options, depthTracker)
-      }
     }
     return this
   }
