@@ -1,5 +1,6 @@
 import fs from 'fs'
 import { resolve, parse } from 'path'
+import { createHash } from 'crypto'
 
 type HotfileAddOnProperty = 'id' | 'stat'
 
@@ -12,13 +13,15 @@ export interface HotfileOptions {
   flatten?: boolean
 }
 
+const md5 = (seed: string) => createHash('md5').update(seed).digest('hex')
 export class Hotfile {
-  isDirectory?: boolean
-  name?: string
-  path?: string
+  isDirectory: boolean
+  id?: string
+  name: string
+  path: string
   relativePath?: string
-  base?: string
-  size?: number
+  base: string
+  size: number
   children?: Hotfile[]
   ext?: string
   stat?: fs.Stats
@@ -26,7 +29,6 @@ export class Hotfile {
   constructor(path: string, options?: HotfileOptions) {
     if (!Hotfile.existsSync(path)) throw new Error('Invalid path: ' + path)
     const { ext, name, base } = parse(path)
-    const x = parse(path)
     const stat = fs.lstatSync(path)
     this.isDirectory = stat.isDirectory()
     this.name = name
@@ -35,6 +37,7 @@ export class Hotfile {
     this.size = stat.size
     this.isDirectory ? (this.children = []) : (this.ext = ext)
     if (options?.extendedProperties?.includes('stat')) this.stat = stat
+    if (options?.extendedProperties?.includes('id')) this.id = md5(this.path)
   }
 
   static existsSync(path: string) {
@@ -45,5 +48,19 @@ export class Hotfile {
       flag = false
     }
     return flag
+  }
+
+  async loadChildren(options?: HotfileOptions, depthTracker: number = 1) {
+    const fileNames = await fs.promises.readdir(this.path)
+    depthTracker++
+    for (let i = 0; i < fileNames.length; i++) {
+      const path = resolve(this.path, fileNames[i])
+      const hotfile = new Hotfile(path, options)
+      this.children?.push(hotfile)
+      if (hotfile.isDirectory && depthTracker <= (options?.depth || 1)) {
+        await hotfile.loadChildren(options, depthTracker)
+      }
+    }
+    return this
   }
 }
